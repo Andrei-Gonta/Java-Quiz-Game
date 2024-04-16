@@ -18,15 +18,16 @@ class Quiz implements ActionListener
 	
 	private char guess;
 	private String answer;
-	private int index=0;
+	private int index;
 	private int correct;
-	//private int total_questions=questions.length;
 	private int result;
-	private int seconds;
+	private int seconds=10;
+	private int pos=0;
 	
 	
 	JFrame frame = new JFrame();
 	JTextField question_no = new JTextField();
+	JTextField text = new JTextField();
 	JTextArea question= new JTextArea();
 	JButton buttonA = new JButton();
 	JButton buttonB = new JButton();
@@ -41,7 +42,10 @@ class Quiz implements ActionListener
 	JTextField percentage = new JTextField();
 
 
-
+	public void a()
+	{
+		System.out.println(questions.length);
+	}
 	
 	
 	public Quiz()
@@ -177,7 +181,7 @@ class Quiz implements ActionListener
 	
 	public void read()
 	{
-		int pos=0;
+		
 	
 		try {
 			Scanner scanner = new Scanner(new File("Q_set.txt"));
@@ -204,7 +208,7 @@ class Quiz implements ActionListener
 	
 	public void nextQuestion()
 	{
-		if(index>=questions.length)
+		if(index>=pos)
 		{
 			result();
 		}	
@@ -276,6 +280,7 @@ class Quiz implements ActionListener
 		buttonB.setEnabled(false);
 		buttonC.setEnabled(false);
 		buttonD.setEnabled(false);
+		
 		if(answers[index].equals("A")==false)
 		{
 			answerA.setForeground(new Color(255,0,0));
@@ -292,6 +297,32 @@ class Quiz implements ActionListener
 		{
 			answerD.setForeground(new Color(255,0,0));	
 		}
+		
+		Timer wait = new Timer(1500, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				answerA.setForeground(new Color(25,255,0));
+				answerB.setForeground(new Color(25,255,0));
+				answerC.setForeground(new Color(25,255,0));
+				answerD.setForeground(new Color(25,255,0));
+
+				answer = " ";
+				seconds = 10;
+				seconds_left.setText(String.valueOf(seconds));
+				buttonA.setEnabled(true);
+				buttonB.setEnabled(true);
+				buttonC.setEnabled(true);
+				buttonD.setEnabled(true);		
+				index++;
+				nextQuestion();
+
+			}
+		});
+		
+		wait.setRepeats(false);
+		wait.start();
 	}
 	
 	
@@ -299,8 +330,44 @@ class Quiz implements ActionListener
 	
 	public void result()
 	{
+		text.setBounds(0, 75, 800, 75);
+		text.setBackground(new Color(25,25,25));
+		text.setForeground(new Color(22,250,0));
+		text.setFont(new Font("Arial", Font.BOLD,32));
+		text.setBorder(BorderFactory.createBevelBorder(1));
+		text.setHorizontalAlignment(JTextField.CENTER);
+		text.setEditable(false);
+		
+		buttonA.setEnabled(false);
+		buttonB.setEnabled(false);
+		buttonC.setEnabled(false);
+		buttonD.setEnabled(false);
+	
+		buttonA.setVisible(false);
+		buttonB.setVisible(false);
+		buttonC.setVisible(false);
+		buttonD.setVisible(false);
+		
+		question.setVisible(false);
+		result=((int)((correct/(double)pos)*100));
+		
+		question_no.setText("Quiz Finished!");
+		text.setText("Your Score: ");
+		answerA.setVisible(false);
+		answerB.setVisible(false);
+		answerC.setVisible(false);
+		answerD.setVisible(false);
+		
+		number_right.setText(correct + "/" + pos);
+		percentage.setText(result + "%");
+		
+		frame.add(text);
+		frame.add(percentage);
+		frame.add(number_right);
 		
 	}
+	
+	
 	
 	
 }

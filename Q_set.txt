@@ -1,12 +1,24 @@
-intrebare 1			
+intrebare 1		
 raspuns 1			
 raspuns 2			
-raspuns 3			
+raspuns 3		
 raspuns 4	
 A
 intrebare 2
 raspuns 1
 raspuns 2
-raspuns 2.3
+raspuns 2
 raspuns 4
 B
+intrebare 3
+raspuns 1
+raspuns 2
+raspuns 2
+raspuns 4
+B
+intrebare 4
+raspuns 1
+raspuns 2
+raspuns 2
+raspuns 4
+C
