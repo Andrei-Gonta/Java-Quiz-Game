@@ -40,12 +40,28 @@ class Quiz implements ActionListener
 	JLabel seconds_left = new JLabel();
 	JTextField number_right = new JTextField();
 	JTextField percentage = new JTextField();
+	
+	
+	private Timer timer = new Timer(1000, new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			seconds--;
+			seconds_left.setText(String.valueOf(seconds));
+			if(seconds<=0)
+			{
+			displayAnswer();
+			}
+			
+			
 
-
-	public void a()
-	{
-		System.out.println(questions.length);
-	}
+		}
+		
+		
+	});
+	
+	
 	
 	
 	public Quiz()
@@ -220,6 +236,8 @@ class Quiz implements ActionListener
 			answerB.setText(options[index][1]);
 			answerC.setText(options[index][2]);
 			answerD.setText(options[index][3]);
+			timer.start();
+			
 		}
 	}
 
@@ -228,6 +246,7 @@ class Quiz implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+	
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		buttonC.setEnabled(false);
@@ -276,6 +295,8 @@ class Quiz implements ActionListener
 	
 	public void displayAnswer()
 	{
+		timer.stop();
+		
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		buttonC.setEnabled(false);
