@@ -52,10 +52,7 @@ class Quiz implements ActionListener
 			if(seconds<=0)
 			{
 			displayAnswer();
-			}
-			
-			
-
+							}
 		}
 		
 		
@@ -124,22 +121,22 @@ class Quiz implements ActionListener
 		// options
 		answerA.setBounds(170,230, 500, 100);
 		answerA.setBackground(new Color(100,100,0));
-		answerA.setForeground(new Color(25,250,0));
+		answerA.setForeground(new Color(255,255,255));
 		answerA.setFont(new Font("Arial", Font.BOLD,40));
 		
 		answerB.setBounds(170,350, 500, 100);
 		answerB.setBackground(new Color(250,0,0));
-		answerB.setForeground(new Color(25,250,0));
+		answerB.setForeground(new Color(255,255,255));
 		answerB.setFont(new Font("Arial", Font.BOLD,40));
 		
 		answerC.setBounds(170,470, 500, 100);
 		answerC.setBackground(new Color(250,0,0));
-		answerC.setForeground(new Color(25,250,0));
+		answerC.setForeground(new Color(255,255,255));
 		answerC.setFont(new Font("Arial", Font.BOLD,40));
 		
 		answerD.setBounds(170,590, 500, 100);
 		answerD.setBackground(new Color(250,0,0));
-		answerD.setForeground(new Color(25,250,0));
+		answerD.setForeground(new Color(255,255,255));
 		answerD.setFont(new Font("Arial", Font.BOLD,40));
 		
 		
@@ -254,10 +251,16 @@ class Quiz implements ActionListener
 		
 		if(e.getSource()==buttonA)
 		{
+			
 			this.answer = "A";
 			if(answer.equals(answers[index]))
 			{
 				correct++;
+				answerA.setForeground(new Color(25,255,0));
+			}
+			else
+			{
+				answerA.setForeground(new Color(255,2,0));
 			}
 		}
 		
@@ -267,6 +270,11 @@ class Quiz implements ActionListener
 			if(this.answer.equals(answers[index]))
 			{
 				correct++;
+				answerB.setForeground(new Color(25,255,0));
+			}
+			else
+			{
+				answerB.setForeground(new Color(255,2,0));
 			}
 		}
 		
@@ -276,6 +284,11 @@ class Quiz implements ActionListener
 			if(this.answer.equals(answers[index]))
 			{
 				correct++;
+				answerC.setForeground(new Color(25,255,0));
+			}
+			else
+			{
+				answerC.setForeground(new Color(255,2,0));
 			}
 		}
 		
@@ -285,8 +298,15 @@ class Quiz implements ActionListener
 			if(this.answer.equals(answers[index]))
 			{
 				correct++;
+				answerD.setForeground(new Color(25,255,0));
+			}
+			else
+			{
+				answerD.setForeground(new Color(255,2,0));
 			}
 		}
+		
+		
 		
 		displayAnswer();
 	}
@@ -302,32 +322,33 @@ class Quiz implements ActionListener
 		buttonC.setEnabled(false);
 		buttonD.setEnabled(false);
 		
-		if(answers[index].equals("A")==false)
+		/*
+		if(answers[index].equals("A")==true)
 		{
-			answerA.setForeground(new Color(255,0,0));
+			answerA.setForeground(new Color(25,255,0));
 		}
-		if(answers[index].equals("B")==false)
+		if(answers[index].equals("B")==true)
 		{
-			answerB.setForeground(new Color(255,0,0));
+			answerB.setForeground(new Color(25,255,0));
 		}
-		if(answers[index].equals("C")==false)
+		if(answers[index].equals("C")==true)
 		{
-			answerC.setForeground(new Color(255,0,0));
+			answerC.setForeground(new Color(25,255,0));
 		}
-		if(answers[index].equals("D")==false)
+		if(answers[index].equals("D")==true)
 		{
-			answerD.setForeground(new Color(255,0,0));	
+			answerD.setForeground(new Color(25,255,0));	
 		}
-		
+		*/
 		Timer wait = new Timer(1500, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				answerA.setForeground(new Color(25,255,0));
-				answerB.setForeground(new Color(25,255,0));
-				answerC.setForeground(new Color(25,255,0));
-				answerD.setForeground(new Color(25,255,0));
+				answerA.setForeground(new Color(255,255,255));
+				answerB.setForeground(new Color(255,255,255));
+				answerC.setForeground(new Color(255,255,255));
+				answerD.setForeground(new Color(255,255,255));
 
 				answer = " ";
 				seconds = 10;
